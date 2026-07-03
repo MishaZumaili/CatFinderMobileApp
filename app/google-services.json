@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1051961302167",
+    "project_id": "catfinderapp-4858d",
+    "storage_bucket": "catfinderapp-4858d.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1051961302167:android:8b3e5029ab9a49a59b5dd2",
+        "android_client_info": {
+          "package_name": "com.example.catfindermobileapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBRjO4NWff085y_XPQuPNEKYDWWbl_H49A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

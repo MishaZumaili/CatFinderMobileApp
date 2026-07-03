@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#FBDDDF">
+
+    <!-- ================= TOP BAR ================= -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp">
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="CatFinder"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            android:textSize="28sp"/>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#000000"/>
+
+    <!-- ================= CONTENT ================= -->
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <!-- ================= TITLE ================= -->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="CAT DETAILS"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            android:textSize="24sp"/>
+
+        <!-- ================= CAT PHOTO ================= -->
+
+        <ImageView
+            android:id="@+id/imgCat"
+            android:layout_width="170dp"
+            android:layout_height="170dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:background="#FFFFFF"
+            android:padding="6dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ipot"/>
+
+            <!-- Pet Name -->
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pet Name"
+                android:textStyle="bold"
+                android:textSize="16sp"/>
+
+            <EditText
+                android:id="@+id/etPetName"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="#FFCBC4"
+                android:textColor="#000000"
+                android:textSize="18sp"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#D6D6D6"/>
+
+            <!-- Age -->
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="Age"
+                android:textStyle="bold"
+                android:textSize="16sp"/>
+
+            <EditText
+                android:id="@+id/etAge"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="#FFCBC4"
+                android:inputType="number"
+                android:textColor="#000000"
+                android:textSize="18sp"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#D6D6D6"/>
+
+            <!-- Breed -->
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="Breed"
+                android:textStyle="bold"
+                android:textSize="16sp"/>
+
+            <Spinner
+                android:id="@+id/spinnerBreed"
+                android:layout_width="match_parent"
+                android:background="#FFCBC4"
+                android:layout_height="50dp"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#D6D6D6"/>
+
+            <!-- Gender -->
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="Gender"
+                android:textStyle="bold"
+                android:textSize="16sp"/>
+
+            <Spinner
+                android:id="@+id/spinnerGender"
+                android:layout_width="match_parent"
+                android:background="#FFCBC4"
+                android:layout_height="50dp"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#D6D6D6"/>
+
+            <!-- Size -->
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="Size"
+                android:textStyle="bold"
+                android:textSize="16sp"/>
+
+            <Spinner
+                android:id="@+id/spinnerSize"
+                android:layout_width="match_parent"
+                android:background="#FFCBC4"
+                android:layout_height="50dp"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="15dp"/>
+
+    <!-- ================= BUTTONS ================= -->
+
+    <Button
+        android:id="@+id/btnViewQR"
+        android:layout_width="220dp"
+        android:layout_height="55dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="25dp"
+        android:backgroundTint="#9E9E9E"
+        android:text="VIEW QR"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        android:textStyle="bold"/>
+
+    <Button
+        android:id="@+id/btnUpdate"
+        android:layout_width="220dp"
+        android:layout_height="55dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="15dp"
+        android:backgroundTint="#EE616C"
+        android:text="UPDATE"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        android:textStyle="bold"/>
+
+    <Button
+        android:id="@+id/btnSetLost"
+        android:layout_width="220dp"
+        android:layout_height="55dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="15dp"
+        android:backgroundTint="#FF3B3B"
+        android:text="SET LOST"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        android:textStyle="bold"/>
+
+    </LinearLayout>
+
+    </ScrollView>
+
+    <!-- ================= BOTTOM NAVIGATION ================= -->
+
+<LinearLayout
+android:layout_width="match_parent"
+android:layout_height="70dp"
+android:background="#FBDDDF"
+android:elevation="5dp"
+android:orientation="horizontal">
+
+<TextView
+    android:id="@+id/navHome"
+    android:layout_width="0dp"
+    android:layout_height="match_parent"
+    android:layout_weight="1"
+    android:gravity="center"
+    android:text="🏠"
+    android:textSize="28sp" />
+
+<TextView
+    android:id="@+id/navQR"
+    android:layout_width="0dp"
+    android:layout_height="match_parent"
+    android:layout_weight="1"
+    android:gravity="center"
+    android:text="📷"
+    android:textSize="28sp" />
+
+<TextView
+    android:id="@+id/navProfile"
+    android:layout_width="0dp"
+    android:layout_height="match_parent"
+    android:layout_weight="1"
+    android:gravity="center"
+    android:text="👤"
+    android:textSize="28sp" />
+
+</LinearLayout>
+
+    </LinearLayout>

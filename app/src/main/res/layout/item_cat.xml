@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    android:background="#FFFFFF"
+    android:orientation="horizontal"
+    android:padding="10dp">
+
+    <!-- IMAGE -->
+    <ImageView
+        android:id="@+id/imgCat"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ipot" />
+
+    <!-- INFO -->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginStart="10dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvCatName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cat Name"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="4dp"
+            android:text="SAFE"
+            android:textColor="#FFFFFF"
+            android:textSize="12sp"
+            android:background="#5EB229" />
+
+        <!-- LOST INFO (ONLY SHOW WHEN LOST) -->
+        <TextView
+            android:id="@+id/tvExtra"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textSize="12sp"
+            android:textColor="#333333"
+            android:visibility="gone"
+            android:paddingTop="5dp"/>
+    </LinearLayout>
+
+    <!-- ACTIONS -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/btnView"
+            android:layout_width="80dp"
+            android:layout_height="35dp"
+            android:text="VIEW"
+            android:textSize="12sp"
+            android:backgroundTint="#9D9D9D"
+            android:textColor="#000000"/>
+
+        <Button
+            android:id="@+id/btnQR"
+            android:layout_width="80dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="5dp"
+            android:text="QR"
+            android:textSize="12sp"
+            android:backgroundTint="#9D9D9D"
+            android:textColor="#000000"/>
+
+        <Button
+            android:id="@+id/btnDelete"
+            android:layout_width="80dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="5dp"
+            android:text="DELETE"
+            android:textSize="12sp"
+            android:backgroundTint="#FF3B30"
+            android:textColor="#FFFFFF"/>
+    </LinearLayout>
+
+</LinearLayout>
