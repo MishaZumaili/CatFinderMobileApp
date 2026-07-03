@@ -43,6 +43,8 @@ public class CatDetailsActivity extends AppCompatActivity {
     String catId;
     String imageUri;
 
+    String currentStatus = "SAFE";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -103,8 +105,19 @@ public class CatDetailsActivity extends AppCompatActivity {
 
         // SET LOST
 
-        btnSetLost.setOnClickListener(v ->
-                showLostPopup());
+        btnSetLost.setOnClickListener(v -> {
+
+            if (currentStatus.equalsIgnoreCase("SAFE")) {
+
+                showLostPopup();
+
+            } else {
+
+                showSafePopup();
+
+            }
+
+        });
 
         // HIDE OWNER BUTTONS IF OPENED FROM QR SCANNER
         if (isFinder) {
@@ -295,28 +308,34 @@ public class CatDetailsActivity extends AppCompatActivity {
                             .getReference("cats")
                             .child(catId)
                             .child("status")
-                            .setValue("LOST");
+                            .setValue("LOST")
+                            .addOnSuccessListener(unused -> {
 
-                    FirebaseDatabase.getInstance()
-                            .getReference("cats")
-                            .child(catId)
-                            .child("lastSeen")
-                            .setValue(date);
+                                FirebaseDatabase.getInstance()
+                                        .getReference("cats")
+                                        .child(catId)
+                                        .child("lastSeen")
+                                        .setValue(date);
 
-                    FirebaseDatabase.getInstance()
-                            .getReference("cats")
-                            .child(catId)
-                            .child("lastLocation")
-                            .setValue(location);
+                                FirebaseDatabase.getInstance()
+                                        .getReference("cats")
+                                        .child(catId)
+                                        .child("lastLocation")
+                                        .setValue(location);
 
-                    Toast.makeText(
-                            CatDetailsActivity.this,
-                            "Marked as LOST",
-                            Toast.LENGTH_SHORT
-                    ).show();
+                                Toast.makeText(
+                                        CatDetailsActivity.this,
+                                        "Marked as LOST",
+                                        Toast.LENGTH_SHORT
+                                ).show();
 
-                    dialog.dismiss();
-                    finish();
+                                currentStatus = "LOST";
+
+                                dialog.dismiss();
+
+                                loadCat();
+
+                            });
                 });
     }
 
@@ -408,6 +427,14 @@ public class CatDetailsActivity extends AppCompatActivity {
                                     if (cat == null)
                                         return;
 
+                                    currentStatus = cat.getStatus();
+
+                                    if (currentStatus == null || currentStatus.isEmpty()) {
+
+                                        currentStatus = "SAFE";
+
+                                    }
+
                                     etPetName.setText(
                                             cat.getCatName()
                                     );
@@ -437,6 +464,28 @@ public class CatDetailsActivity extends AppCompatActivity {
                                         loadBase64Image(
                                                 cat.getImageBase64()
                                         );
+                                    }
+
+                                    if (currentStatus.equalsIgnoreCase("SAFE")) {
+
+                                        btnSetLost.setText("SET LOST");
+
+                                        btnSetLost.setBackgroundTintList(
+                                                android.content.res.ColorStateList.valueOf(
+                                                        0xFFFF3B3B
+                                                )
+                                        );
+
+                                    } else {
+
+                                        btnSetLost.setText("SET SAFE");
+
+                                        btnSetLost.setBackgroundTintList(
+                                                android.content.res.ColorStateList.valueOf(
+                                                        0xFF4CAF50
+                                                )
+                                        );
+
                                     }
                                 }
 
@@ -471,6 +520,57 @@ public class CatDetailsActivity extends AppCompatActivity {
 
             e.printStackTrace();
         }
+    }
+
+    private void showSafePopup() {
+
+        new AlertDialog.Builder(this)
+
+                .setTitle("Cat Found")
+
+                .setMessage("Has your cat been found?")
+
+                .setPositiveButton("YES", (dialog, which) -> {
+
+                    FirebaseDatabase.getInstance()
+                            .getReference("cats")
+                            .child(catId)
+                            .child("status")
+                            .setValue("SAFE")
+                            .addOnSuccessListener(unused -> {
+
+                                FirebaseDatabase.getInstance()
+                                        .getReference("cats")
+                                        .child(catId)
+                                        .child("lastSeen")
+                                        .setValue("");
+
+                                FirebaseDatabase.getInstance()
+                                        .getReference("cats")
+                                        .child(catId)
+                                        .child("lastLocation")
+                                        .setValue("");
+
+                                Toast.makeText(
+                                        CatDetailsActivity.this,
+                                        "Cat marked as SAFE",
+                                        Toast.LENGTH_SHORT
+                                ).show();
+
+                                currentStatus = "SAFE";
+
+                                dialog.dismiss();
+
+                                loadCat();
+
+                            });
+
+                })
+
+                .setNegativeButton("NO", null)
+
+                .show();
+
     }
 
 }
