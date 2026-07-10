@@ -36,6 +36,18 @@
             android:text="Cat Name"
             android:textStyle="bold" />
 
+        <Button
+            android:id="@+id/btnDownloadQR"
+            android:layout_width="220dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:text="Download QR"
+            android:textAllCaps="false"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#EE616C"/>
+
     </LinearLayout>
 
     <!-- DIVIDER -->

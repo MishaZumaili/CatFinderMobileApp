@@ -5,6 +5,8 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -22,12 +24,16 @@ public class QRCodeActivity extends AppCompatActivity {
     TextView navQR;
     TextView navProfile;
 
+    Button btnDownloadQR;
+    Bitmap qrBitmap;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_qrcode);
 
         imgQRCode = findViewById(R.id.imgQRCode);
+        btnDownloadQR = findViewById(R.id.btnDownloadQR);
 
         navHome = findViewById(R.id.navHome);
         navQR = findViewById(R.id.navQR);
@@ -45,6 +51,8 @@ public class QRCodeActivity extends AppCompatActivity {
         tvCatName.setText(catName);
 
         generateQRCode(catId);
+
+        btnDownloadQR.setOnClickListener(v -> saveQRCode(catName));
 
         navHome.setOnClickListener(v -> {
 
@@ -116,8 +124,51 @@ public class QRCodeActivity extends AppCompatActivity {
             }
 
             imgQRCode.setImageBitmap(bitmap);
+            qrBitmap = bitmap;
 
         } catch (WriterException e) {
+
+            e.printStackTrace();
+        }
+    }
+
+    private void saveQRCode(String catName) {
+
+        if (qrBitmap == null) {
+
+            Toast.makeText(
+                    this,
+                    "QR Code not ready",
+                    Toast.LENGTH_SHORT
+            ).show();
+
+            return;
+        }
+
+        try {
+
+            String fileName = catName + "_QR";
+
+            android.provider.MediaStore.Images.Media.insertImage(
+                    getContentResolver(),
+                    qrBitmap,
+                    fileName,
+                    "CatFinder QR Code"
+            );
+
+            Toast.makeText(
+                    this,
+                    "QR Code saved to Gallery",
+                    Toast.LENGTH_LONG
+            ).show();
+
+        } catch (Exception e) {
+
+            Toast.makeText(
+                    this,
+                    "Failed to save QR Code",
+                    Toast.LENGTH_SHORT
+            ).show();
 
             e.printStackTrace();
         }

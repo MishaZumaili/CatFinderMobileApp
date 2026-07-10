@@ -71,6 +71,18 @@
             android:scaleType="centerCrop"
             android:src="@drawable/ipot"/>
 
+        <Button
+            android:id="@+id/btnChangePhoto"
+            android:layout_width="180dp"
+            android:layout_height="45dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="15dp"
+            android:backgroundTint="#EE616C"
+            android:text="Change Photo"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"/>
+
             <!-- Pet Name -->
 
             <TextView

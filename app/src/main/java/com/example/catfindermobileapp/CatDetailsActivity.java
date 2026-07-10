@@ -1,6 +1,10 @@
 package com.example.catfindermobileapp;
 
 import android.content.Intent;
+import android.net.Uri;
+import android.graphics.drawable.BitmapDrawable;
+
+import java.io.ByteArrayOutputStream;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,6 +37,7 @@ public class CatDetailsActivity extends AppCompatActivity {
     Button btnUpdate;
     Button btnViewQR;
     Button btnSetLost;
+    Button btnChangePhoto;
 
     ImageView imgCat;
 
@@ -40,8 +45,11 @@ public class CatDetailsActivity extends AppCompatActivity {
     TextView navQR;
     TextView navProfile;
 
+    private static final int PICK_IMAGE = 1;
+
     String catId;
-    String imageUri;
+
+    Uri imageUri;
 
     String currentStatus = "SAFE";
 
@@ -60,6 +68,20 @@ public class CatDetailsActivity extends AppCompatActivity {
         btnUpdate = findViewById(R.id.btnUpdate);
         btnViewQR = findViewById(R.id.btnViewQR);
         btnSetLost = findViewById(R.id.btnSetLost);
+        btnChangePhoto = findViewById(R.id.btnChangePhoto);
+
+        btnChangePhoto.setOnClickListener(v -> {
+
+            Intent intent = new Intent(Intent.ACTION_PICK);
+
+            intent.setType("image/*");
+
+            startActivityForResult(
+                    intent,
+                    PICK_IMAGE
+            );
+
+        });
 
         imgCat = findViewById(R.id.imgCat);
 
@@ -127,6 +149,8 @@ public class CatDetailsActivity extends AppCompatActivity {
             btnViewQR.setVisibility(View.GONE);
 
             btnSetLost.setVisibility(View.GONE);
+
+            btnChangePhoto.setVisibility(View.GONE);
 
         }
 
@@ -232,6 +256,16 @@ public class CatDetailsActivity extends AppCompatActivity {
                                 .getSelectedItem()
                                 .toString()
                 );
+
+        if (imageUri != null) {
+
+            FirebaseDatabase.getInstance()
+                    .getReference("cats")
+                    .child(catId)
+                    .child("imageBase64")
+                    .setValue(imageToBase64());
+
+        }
 
         Toast.makeText(
                 this,
@@ -522,7 +556,66 @@ public class CatDetailsActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    protected void onActivityResult(
+            int requestCode,
+            int resultCode,
+            Intent data) {
+
+        super.onActivityResult(
+                requestCode,
+                resultCode,
+                data
+        );
+
+        if (requestCode == PICK_IMAGE
+                && resultCode == RESULT_OK
+                && data != null) {
+
+            imageUri = data.getData();
+
+            imgCat.setImageURI(imageUri);
+
+        }
+
+    }
+
+    private String imageToBase64() {
+
+        try {
+
+            Bitmap bitmap =
+                    ((BitmapDrawable)
+                            imgCat.getDrawable())
+                            .getBitmap();
+
+            ByteArrayOutputStream baos =
+                    new ByteArrayOutputStream();
+
+            bitmap.compress(
+                    Bitmap.CompressFormat.JPEG,
+                    70,
+                    baos
+            );
+
+            byte[] imageBytes =
+                    baos.toByteArray();
+
+            return Base64.encodeToString(
+                    imageBytes,
+                    Base64.DEFAULT
+            );
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
+            return "";
+        }
+
+    }
+
     private void showSafePopup() {
+
 
         new AlertDialog.Builder(this)
 

@@ -11,8 +11,8 @@
     <!-- IMAGE -->
     <ImageView
         android:id="@+id/imgCat"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:scaleType="centerCrop"
         android:src="@drawable/ipot" />
 
@@ -22,6 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:layout_marginStart="10dp"
+        android:layout_marginEnd="8dp"
         android:orientation="vertical">
 
         <TextView
@@ -36,58 +37,66 @@
             android:id="@+id/tvStatus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="4dp"
+            android:layout_marginTop="3dp"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:paddingTop="3dp"
+            android:paddingBottom="3dp"
             android:text="SAFE"
             android:textColor="#FFFFFF"
             android:textSize="12sp"
             android:background="#5EB229" />
 
-        <!-- LOST INFO (ONLY SHOW WHEN LOST) -->
         <TextView
             android:id="@+id/tvExtra"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
             android:text=""
-            android:textSize="12sp"
             android:textColor="#333333"
-            android:visibility="gone"
-            android:paddingTop="5dp"/>
+            android:textSize="12sp"
+            android:visibility="gone" />
+
     </LinearLayout>
 
-    <!-- ACTIONS -->
+    <!-- ACTION BUTTONS -->
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="95dp"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <Button
             android:id="@+id/btnView"
-            android:layout_width="80dp"
-            android:layout_height="35dp"
-            android:text="VIEW"
-            android:textSize="12sp"
+            android:layout_width="95dp"
+            android:layout_height="42dp"
             android:backgroundTint="#9D9D9D"
-            android:textColor="#000000"/>
+            android:text="VIEW"
+            android:textAllCaps="false"
+            android:textColor="#000000"
+            android:textSize="13sp" />
 
         <Button
             android:id="@+id/btnQR"
-            android:layout_width="80dp"
-            android:layout_height="35dp"
-            android:layout_marginTop="5dp"
-            android:text="QR"
-            android:textSize="12sp"
+            android:layout_width="95dp"
+            android:layout_height="42dp"
+            android:layout_marginTop="6dp"
             android:backgroundTint="#9D9D9D"
-            android:textColor="#000000"/>
+            android:text="QR"
+            android:textAllCaps="false"
+            android:textColor="#000000"
+            android:textSize="13sp" />
 
         <Button
             android:id="@+id/btnDelete"
-            android:layout_width="80dp"
-            android:layout_height="35dp"
-            android:layout_marginTop="5dp"
-            android:text="DELETE"
-            android:textSize="12sp"
+            android:layout_width="95dp"
+            android:layout_height="42dp"
+            android:layout_marginTop="6dp"
             android:backgroundTint="#FF3B30"
-            android:textColor="#FFFFFF"/>
+            android:text="DELETE"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:textSize="12sp" />
+
     </LinearLayout>
 
 </LinearLayout>
